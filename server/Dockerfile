@@ -14,6 +14,5 @@ EXPOSE 25565
 
 LABEL NAME = "Better Than Wolves Server"
 LABEL VERSION = "0.1"
-LABEL RUN = "docker run -ti -p 25565:25565 -v $(pwd):/mod --mount source=BetterThanWolves,target=/opt/server/world btw-server:0.1"
 
 CMD ["/opt/startup.sh"]

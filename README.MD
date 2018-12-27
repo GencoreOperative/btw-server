@@ -18,14 +18,14 @@ is downloaded to the `docker run` command. The following example assumes
 that the zip is located in the current folder:
 
 ```
-docker run -d --name btw-server -p 25565:25565 -v ${pwd}:/mod --mount source=BetterThanWolves,target=/opt/server/world btw-server:latest
+docker run -d --name btw-server -p 25565:25565 -v "$(pwd)":/mod --mount source=BetterThanWolves,target=/opt/server/world btw-server:latest
 ```
 
 If you are running from Windows then a similar command can be used to
 locate the zip file in the current folder:
 
 ```
-docker run -d --name btw-server -p 25565:25565 -v %cd%:/mod --mount source=BetterThanWolves,target=/opt/server/world btw-server:latest
+docker run -d --name btw-server -p 25565:25565 -v "%cd%":/mod --mount source=BetterThanWolves,target=/opt/server/world btw-server:latest
 ```
 
 This will allow the Docker container to find the zip file in the current
@@ -57,6 +57,31 @@ And if we wish to re-start the server we can issue the following:
 
 ```
 docker start btw-server
+```
+
+## Backup World
+
+The world data is contained within a Docker volume called `BetterThanWolves` and
+can be extracted to the local folder using the following command:
+
+```
+docker run -it --rm -v BetterThanWolves:/volume -v "$(pwd)":/backup alpine tar -cjf /backup/backup.tar.bz2 -C /volume ./
+```
+
+Which will create a file in the local folder called `backup.tar.bz2`.
+
+## Restore World
+
+If we wish to restore a backup then we should ensure that first the volume, then we can issue the following command:
+
+```
+docker volume rm -f BetterThanWolves
+```
+
+Then we can copy the backup data into the volume using:
+
+```
+docker run -it --rm -v BetterThanWolves:/volume -v "$(pwd)":/backup alpine tar -vxjf /backup/backup.tar.bz2 -C /volume
 ```
 
 ## License

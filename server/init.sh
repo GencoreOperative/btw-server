@@ -9,7 +9,7 @@ if [ -f "$SERVER_JAR" ]; then
 	exit 0
 fi
 
-ZIP=$(ls -1t /mod/*.zip | head -n 1)
+ZIP=$(ls -1t /mod/BTWMod*.zip | head -n 1)
 
 # Verify ZIP file provided
 if [ ! -f "$ZIP" ]; then
@@ -27,7 +27,7 @@ rm minecraft_server.1.5.2.jar
 
 
 # Unzip MINECRAFT_SERVER-JAR from Mod
-echo "Unpacking Mod..."
+echo "Unpacking $ZIP..."
 unzip -q $ZIP 'MINECRAFT_SERVER-JAR/*' -d /tmp/server
 (cd /tmp/server/MINECRAFT_SERVER-JAR && cp -r * ..)
 rm -rf /tmp/server/MINECRAFT_SERVER-JAR
