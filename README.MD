@@ -23,7 +23,7 @@ docker run -d \
     -p 25565:25565 \
     -v "$(pwd)":/mod \
     --mount source=BetterThanWolves,target=/opt/server/world \
-    btw-server:latest
+    gencore/btw-server:latest
 ```
 
 If you are running from Windows then a similar command can be used to
@@ -35,7 +35,7 @@ docker run -d \
     -p 25565:25565 \
     -v "%cd%":/mod \
     --mount source=BetterThanWolves,target=/opt/server/world \
-    btw-server:latest
+    gencore/btw-server:latest
 ```
 
 This will allow the Docker container to find the zip file in the current

@@ -1,3 +1,9 @@
 #!/bin/bash
 
-docker build server --tag btw-server:0.1 --tag btw-server:latest --squash
+docker build server \
+    --tag gencore/btw-server:0.1 \
+    --tag gencore/btw-server:latest \
+    --squash
+
+docker push gencore/btw-server:0.1
+docker push gencore/btw-server:latest
