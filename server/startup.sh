@@ -1,6 +1,9 @@
 #!/bin/bash
+# Server startup script
 
 set -e
+
+bash /opt/init.sh
 
 # Startup Minecraft server
 # Optimise GC
