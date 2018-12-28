@@ -19,11 +19,16 @@ RUN chown server:server /opt/startup.sh && chown server:server /opt/init.sh
 EXPOSE 25565
 
 ARG VERSION
-LABEL org.label-schema.name = "Better Than Wolves Server"
-LABEL org.label-schema.description = "A Minecraft server running the Better Than Wolves mod"
-LABEL org.label-schema.vcs-url = "https://github.com/rwapshott/btw-server"
-LABEL org.label-schema.version = "${VERSION}"
-LABEL org.label-schema.schema-version = "1.0"
+ARG VCS_REF
+ARG BUILD_DATE
+
+LABEL org.label-schema.name = "Better Than Wolves Server" \
+  org.label-schema.description = "A Minecraft server running the Better Than Wolves mod" \
+  org.label-schema.version = "${VERSION}" \
+  org.label-schema.build-date=${BUILD_DATE} \
+  org.label-schema.vcs-ref=${VCS_REF} \
+  org.label-schema.vcs-url="https://github.com/rwapshott/btw-server" \
+  org.label-schema.schema-version = "1.0"
 
 USER server
 CMD ["/opt/startup.sh"]

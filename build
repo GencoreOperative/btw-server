@@ -4,12 +4,16 @@
 set -e
 
 VERSION=0.2
+VCS_REF=$(git rev-parse --short HEAD)
+BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 docker build server \
 	--squash \
     --tag gencore/btw-server:$VERSION \
     --tag gencore/btw-server:latest \
-    --build-arg VERSION=$VERSION
+    --build-arg VERSION=$VERSION \
+    --build-arg VCS_REF=$VCS_REF \
+    --build-arg BUILD_DATE=$BUILD_DATE
 
-#docker push gencore/btw-server:$VERSION
-#docker push gencore/btw-server:latest
+docker push gencore/btw-server:$VERSION
+docker push gencore/btw-server:latest

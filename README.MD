@@ -18,7 +18,7 @@ is downloaded to the `docker run` command. The following example assumes
 that the zip is located in the current folder:
 
 ```
-docker run -d \
+docker run -ti \
     --name btw-server \
     -p 25565:25565 \
     -v "$(pwd)":/mod \
@@ -30,7 +30,7 @@ If you are running from Windows then a similar command can be used to
 locate the zip file in the current folder:
 
 ```
-docker run -d \
+docker run -ti \
     --name btw-server \
     -p 25565:25565 \
     -v "%cd%":/mod \
