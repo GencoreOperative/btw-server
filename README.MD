@@ -1,7 +1,6 @@
 A Docker project to build the Better Than Wolves Minecraft server.
 
-This Dockerfile requires that you have downloaded the Better Than Wolves
-mod from the [official forum](http://www.sargunster.com/btwforum).
+[Official Better Than Wolves forum](http://www.sargunster.com/btwforum)
 
 ## Requirements
 
@@ -13,9 +12,8 @@ mod zip file before you can run this project.
 
 ## Running
 
-To run this project, we need to provide the location of where the Zip file
-is downloaded to the `docker run` command. The following example assumes
-that the zip is located in the current folder:
+To run this project we need to start the `docker run` command in the folder 
+where the BTW Mod zip was downloaded to:
 
 ```
 docker run -ti \
@@ -38,36 +36,40 @@ docker run -ti \
     gencore/btw-server:latest
 ```
 
-This will allow the Docker container to find the zip file in the current
-folder and then use it to patch a 1.5.2 Minecraft server. The newly
-patched server is then started.
+This will allow the Docker container. As part of first startup the 
+Docker container will download the 1.5.2 Minecraft server and patch
+it with the BTW Mod zip. This only happens on the first startup.
 
-If you wish to issue server commands we can use the `docker attach` 
-command to connect to the named container:
+Then to stop the server, we can press CTRL + C to stop the server.
+
+## Restarting
+
+If we want to re-start the server then we can use the following commands:
+
+```
+docker start btw-server
+```
+
+This will start the server in the background. To attach to this server and
+issue server commands we can use `docker attach`:
 
 ```
 docker attach btw-server
 ```
 
-Or if we simply want to see the logs from the server we can do so with:
+Or if you are interested in the logs of the server we can use:
 
 ```
-docker logs btw-server
+docker logs -f btw-server
 ```
 
-## Stopping/Restarting
-
-If we need to stop the server we can issue the following command:
+Finally to stop the server we can use:
 
 ```
 docker stop btw-server
 ```
 
-And if we wish to re-start the server we can issue the following:
-
-```
-docker start btw-server
-```
+To issue the shutdown signal.
 
 ## Backup World
 
