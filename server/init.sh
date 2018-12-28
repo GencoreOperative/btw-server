@@ -13,7 +13,10 @@ ZIP=$(ls -1t /mod/BTWMod*.zip | head -n 1)
 
 # Verify ZIP file provided
 if [ ! -f "$ZIP" ]; then
-	echo "Error: No BTW Mod zip provided!"
+	echo "Error: Could not find the Better Than Wolves zip file."
+	echo ""
+	echo "Please ensure that this Docker image on its first run is"
+	echo "started from the folder that contains the downloaded zip."
 	exit -1
 fi
 
