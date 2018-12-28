@@ -1,9 +1,15 @@
 #!/bin/bash
+# Build script for building and pushing the Docker image
+
+set -e
+
+VERSION=0.2
 
 docker build server \
-    --tag gencore/btw-server:0.1 \
+	--squash \
+    --tag gencore/btw-server:$VERSION \
     --tag gencore/btw-server:latest \
-    --squash
+    --build-arg VERSION=$VERSION
 
-docker push gencore/btw-server:0.1
-docker push gencore/btw-server:latest
+#docker push gencore/btw-server:$VERSION
+#docker push gencore/btw-server:latest
